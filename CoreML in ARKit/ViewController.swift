@@ -10,9 +10,14 @@ import UIKit
 import SceneKit
 import ARKit
 
+import Vision
+
 class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
+    
+    // COREML
+    var visionRequests = [VNRequest]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +33,18 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Set the scene to the view
         sceneView.scene = scene
+        
+        //////////////////////////////////////////////////
+        
+        // Set up Vision Model
+        guard let inceptionV3Model = try? VNCoreMLModel(for: Inceptionv3().model) else {
+            fatalError("Could not load model. Ensure model has been drag and dropped (copied) to XCode Project from https://developer.apple.com/machine-learning/")
+        }
+        
+        // Set up Vision-CoreML Request
+        let classificationRequest = VNCoreMLRequest(model: inceptionV3Model, completionHandler: classificationCompleteHandler)
+        classificationRequest.imageCropAndScaleOption = VNImageCropAndScaleOption.centerCrop // Crop from centre of images and scale to appropriate size.
+        visionRequests = [classificationRequest]
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,6 +92,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     func sessionInterruptionEnded(_ session: ARSession) {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
-        
+    }
+    
+    // MARK: - CoreML Vision Handling
+    
+    func classificationCompleteHandler(request: VNRequest, error: Error?) {
+        // ToDo: Print Classification ...
     }
 }
