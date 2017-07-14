@@ -50,6 +50,7 @@
                         <viewLayoutGuide key="safeArea" id="W2V-Gj-Pwx"/>
                     </view>
                     <connections>
+                        <outlet property="debugTextView" destination="hWs-m5-HIX" id="aW0-YQ-CNv"/>
                         <outlet property="sceneView" destination="XMs-gA-sya" id="uz8-4k-aSX"/>
                     </connections>
                 </viewController>

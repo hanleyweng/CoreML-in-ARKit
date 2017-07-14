@@ -19,6 +19,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     // COREML
     var visionRequests = [VNRequest]()
     let dispatchQueueML = DispatchQueue(label: "com.hw.dispatchqueueml") // A Serial Queue
+    @IBOutlet weak var debugTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,10 +78,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     // ...
     
+    // MARK: - Status Bar: Hide
+    override var prefersStatusBarHidden : Bool {
+        return true
+    }
+    
     // MARK: - CoreML Vision Handling
     
-    // Continuously run CoreML whenever it's ready. (Preventing 'hiccups' in Frame Rate)
     func loopCoreMLUpdate() {
+        // Continuously run CoreML whenever it's ready. (Preventing 'hiccups' in Frame Rate)
         
         dispatchQueueML.async {
             // 1. Run Update.
@@ -109,10 +115,17 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             .map({ "\($0.identifier) \(String(format:"- %.2f", $0.confidence))" })
             .joined(separator: "\n")
         
-        // Print Classifications
+        
         DispatchQueue.main.async {
+            // Print Classifications
             print(classifications)
             print("--")
+            
+            // Display Debug Text on screen
+            var debugText:String = ""
+            debugText += classifications
+            self.debugTextView.text = debugText
+            
         }
     }
     
