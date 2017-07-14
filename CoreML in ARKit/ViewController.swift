@@ -37,6 +37,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.scene = scene
         
         //////////////////////////////////////////////////
+        // Tap Gesture Recognizer
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(gestureRecognize:)))
+        view.addGestureRecognizer(tapGesture)
+        
+        //////////////////////////////////////////////////
         
         // Set up Vision Model
         guard let inceptionV3Model = try? VNCoreMLModel(for: Inceptionv3().model) else {
@@ -81,6 +86,20 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     // MARK: - Status Bar: Hide
     override var prefersStatusBarHidden : Bool {
         return true
+    }
+    
+    // MARK: - Interaction
+    
+    @objc func handleTap(gestureRecognize: UITapGestureRecognizer) {
+        // HIT TEST : REAL WORLD
+        // Get Screen Centre
+        let screenCentre : CGPoint = CGPoint(x: self.sceneView.bounds.midX, y: self.sceneView.bounds.midY)
+        
+        let arHitTestResults : [ARHitTestResult] = sceneView.hitTest(screenCentre, types: [.featurePoint]) // Alternatively, we could use '.existingPlaneUsingExtent' for more grounded hit-test-points.
+        
+        if let closestResult = arHitTestResults.first {
+            // ToDo: Render some 3D Text ...
+        }
     }
     
     // MARK: - CoreML Vision Handling
