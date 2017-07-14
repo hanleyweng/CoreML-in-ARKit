@@ -1,7 +1,7 @@
 # CoreML-in-ARKit
 This simple project detects objects in Augmented Reality and displays 3D labels on top of them. This serves as a basic template for an ARKit project to use CoreML.
 
-![image of scene with 3d labels on objects](post-media/snapshot.jpg)
+![image of scene with 3d labels on objects](post-media/snapshot.jpg | width=200)
 
 [Demo Video - on Youtube](https://www.youtube.com/watch?v=RjIbiAC8cBk)
 
@@ -21,9 +21,9 @@ Note: SceneKit can achieve a 60 FPS on iPhone7+ - though when it gets hot, it'll
 
 You'll have to download "Inceptionv3.mlmodel" from [Apple's Machine Learning page](https://developer.apple.com/machine-learning/), and copy it into your XCode project. (As depicted in the following gif)
 
-![Gif to show dragging and dropping of model into XCode](AddingMLModel.gif)
+![Gif to show dragging and dropping of model into XCode](post-media/AddingMLModel.gif)
 
-[__Gif via Atomic14__](https://github.com/atomic14/VisionCoreMLSample)
+[_(Gif via Atomic14)_](https://github.com/atomic14/VisionCoreMLSample)
 
 ## Footnotes
 
