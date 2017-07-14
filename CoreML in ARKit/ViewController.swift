@@ -18,6 +18,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     // COREML
     var visionRequests = [VNRequest]()
+    let dispatchQueueML = DispatchQueue(label: "com.hw.dispatchqueueml") // A Serial Queue
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +46,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let classificationRequest = VNCoreMLRequest(model: inceptionV3Model, completionHandler: classificationCompleteHandler)
         classificationRequest.imageCropAndScaleOption = VNImageCropAndScaleOption.centerCrop // Crop from centre of images and scale to appropriate size.
         visionRequests = [classificationRequest]
+        
+        // Begin Loop to Update CoreML
+        loopCoreMLUpdate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,6 +78,19 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     // ...
     
     // MARK: - CoreML Vision Handling
+    
+    // Continuously run CoreML whenever it's ready. (Preventing 'hiccups' in Frame Rate)
+    func loopCoreMLUpdate() {
+        
+        dispatchQueueML.async {
+            // 1. Run Update.
+            self.updateCoreML()
+            
+            // 2. Loop this function.
+            self.loopCoreMLUpdate()
+        }
+        
+    }
     
     func classificationCompleteHandler(request: VNRequest, error: Error?) {
         // Catch Errors
