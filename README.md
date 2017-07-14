@@ -1,7 +1,7 @@
 # CoreML-in-ARKit
 This simple project detects objects in Augmented Reality and displays 3D labels on top of them. This serves as a basic template for an ARKit project to use CoreML.
 
-![image of scene with 3d labels on objects](post-media/snapshot.jpg | width=200)
+![image of scene with 3d labels on objects](post-media/giphy.gif)
 
 [Demo Video - on Youtube](https://www.youtube.com/watch?v=RjIbiAC8cBk)
 
