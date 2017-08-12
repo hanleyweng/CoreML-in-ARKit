@@ -39,9 +39,9 @@ You'll have to download "Inceptionv3.mlmodel" from [Apple's Machine Learning pag
 
 ### Get CoreML running in real time in ARKit
 
-- There are some good tutorials / sample projects for getting ARKit running. See: [1](https://github.com/atomic14/VisionCoreMLSample) [2](https://github.com/yulingtianxia/Core-ML-Sample) [3](http://www.stringcode.co.uk/mlcamera/)
+- There are some good tutorials / sample projects for getting CoreML running. See: [1](https://github.com/atomic14/VisionCoreMLSample) [2](https://github.com/yulingtianxia/Core-ML-Sample) [3](http://www.stringcode.co.uk/mlcamera/)
 
-- What we do differently here is we're using ARFrame to capture the image
+- What we do differently here is we're using ARKit's ARFrame as the image to be fed into CoreML.
 
 ```
 let pixbuff : CVPixelBuffer? = (sceneView.session.currentFrame?.capturedImage)
