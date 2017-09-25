@@ -9,7 +9,7 @@ Model: Inception V3
 
 Language: Swift 4.0
 
-Written in: XCode 9 beta 3 (9M174d)
+Written in: Xcode 9.0 GM (9A235) (Updated) ~~XCode 9 beta 3 (9M174d)~~
 
 Content Technology: SceneKit
 
@@ -25,6 +25,8 @@ You'll have to download "Inceptionv3.mlmodel" from [Apple's Machine Learning pag
 
 [_(Gif via Atomic14)_](https://github.com/atomic14/VisionCoreMLSample)
 
+If you're having issues, double check that the model is part of a target [(source: stackoverflow)](https://stackoverflow.com/questions/45884085/model-is-not-part-of-any-target-add-the-model-to-a-target-to-enable-generation).
+
 ## Footnotes
 
 - SceneKit Text Labels are expensive to render. Too many polygons (too much text, smoothness, characters) - can cause crashes. In future, SpriteKit would be more efficient for text-labels.
@@ -39,7 +41,7 @@ You'll have to download "Inceptionv3.mlmodel" from [Apple's Machine Learning pag
 
 ### Get CoreML running in real time in ARKit
 
-- There are some good tutorials / sample projects for getting CoreML running. See: [1](https://github.com/atomic14/VisionCoreMLSample) [2](https://github.com/yulingtianxia/Core-ML-Sample) [3](http://www.stringcode.co.uk/mlcamera/)
+- There are some good tutorials / sample projects for getting CoreML running. See: [[ 1 ]](https://github.com/atomic14/VisionCoreMLSample) [[ 2 ]](https://github.com/yulingtianxia/Core-ML-Sample) [[ 3 ]](http://www.stringcode.co.uk/mlcamera/)
 
 - What we do differently here is we're using ARKit's ARFrame as the image to be fed into CoreML.
 

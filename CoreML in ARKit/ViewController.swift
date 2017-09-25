@@ -50,12 +50,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         //////////////////////////////////////////////////
         
         // Set up Vision Model
-        guard let inceptionV3Model = try? VNCoreMLModel(for: Inceptionv3().model) else {
-            fatalError("Could not load model. Ensure model has been drag and dropped (copied) to XCode Project from https://developer.apple.com/machine-learning/")
+        guard let selectedModel = try? VNCoreMLModel(for: Inceptionv3().model) else { // (Optional) This can be replaced with other models on https://developer.apple.com/machine-learning/
+            fatalError("Could not load model. Ensure model has been drag and dropped (copied) to XCode Project from https://developer.apple.com/machine-learning/ . Also ensure the model is part of a target (see: https://stackoverflow.com/questions/45884085/model-is-not-part-of-any-target-add-the-model-to-a-target-to-enable-generation ")
         }
         
         // Set up Vision-CoreML Request
-        let classificationRequest = VNCoreMLRequest(model: inceptionV3Model, completionHandler: classificationCompleteHandler)
+        let classificationRequest = VNCoreMLRequest(model: selectedModel, completionHandler: classificationCompleteHandler)
         classificationRequest.imageCropAndScaleOption = VNImageCropAndScaleOption.centerCrop // Crop from centre of images and scale to appropriate size.
         visionRequests = [classificationRequest]
         
