@@ -30,8 +30,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Set the view's delegate
         sceneView.delegate = self
         
-        // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
+     
         
         // Create a new scene
         let scene = SCNScene()
@@ -50,7 +49,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         //////////////////////////////////////////////////
         
         // Set up Vision Model
-        guard let selectedModel = try? VNCoreMLModel(for: Inceptionv3().model) else { // (Optional) This can be replaced with other models on https://developer.apple.com/machine-learning/
+        guard let selectedModel = try? VNCoreMLModel(for: MobileNet().model) else { // (Optional) This can be replaced with other models on https://developer.apple.com/machine-learning/
             fatalError("Could not load model. Ensure model has been drag and dropped (copied) to XCode Project from https://developer.apple.com/machine-learning/ . Also ensure the model is part of a target (see: https://stackoverflow.com/questions/45884085/model-is-not-part-of-any-target-add-the-model-to-a-target-to-enable-generation ")
         }
         
@@ -82,10 +81,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.pause()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
-    }
+   
 
     // MARK: - ARSCNViewDelegate
     
@@ -191,7 +187,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Get Classifications
         let classifications = observations[0...1] // top 2 results
             .flatMap({ $0 as? VNClassificationObservation })
-            .map({ "\($0.identifier) \(String(format:"- %.2f", $0.confidence))" })
+            .map({ "\($0.identifier) \(String(format:"- %.2f", ($0.confidence)*100)) \("%")" })
             .joined(separator: "\n")
         
         
