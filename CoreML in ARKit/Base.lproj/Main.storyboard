@@ -19,7 +19,7 @@
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XMs-gA-sya">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="701"/>
                             </arscnView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="bottom" misplaced="YES" scrollEnabled="NO" maximumZoomScale="2" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hWs-m5-HIX">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="bottom" misplaced="YES" scrollEnabled="NO" maximumZoomScale="2" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hWs-m5-HIX">
                                 <rect key="frame" x="0.0" y="44" width="453" height="81"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.51875535100000003" colorSpace="calibratedWhite"/>
                                 <constraints>
