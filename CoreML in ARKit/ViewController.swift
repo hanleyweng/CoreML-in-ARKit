@@ -187,7 +187,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Get Classifications
         let classifications = observations[0...1] // top 2 results
             .flatMap({ $0 as? VNClassificationObservation })
-            .map({ "\($0.identifier) \(String(format:"- %.2f", $0.confidence))" })
+            .map({ "\($0.identifier) \(String(format:"- %.2f", ($0.confidence)*100)) \("%")" })
             .joined(separator: "\n")
         
         
